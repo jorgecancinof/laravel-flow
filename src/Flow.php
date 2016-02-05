@@ -301,7 +301,6 @@ class Flow {
             $this->flow_log("firma invalida", "read_result");
             throw new Exception('Invalid signature from Flow');
         }
-        $this->order["Comision"] = config('flow.tasa_default');
         $this->order["Status"] = "";
         $this->order["Error"] = "";
         $this->order['OrdenNumero'] = $params['kpf_orden'];
