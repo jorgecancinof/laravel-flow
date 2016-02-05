@@ -1,0 +1,21 @@
+{
+    "name": "cokecancino/laravel-flow",
+    "description": "A Laravel Package to use Flow (https://www.flow.cl)",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Jorge Cancino Flores",
+            "email": "jorgecancinof@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0",
+        "illuminate/support": "~5.0",
+        "cokecancino/laravel-flow": "~0.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "CokeCancino\\LaravelFlow\\": "src/"
+        }
+    }
+}
