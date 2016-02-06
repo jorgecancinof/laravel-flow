@@ -11,6 +11,7 @@ class FlowServiceProvider extends ServiceProvider
      *
      * @var bool
      */
+    protected $defer = true;
 
     /**
      * Bootstrap the application services.
@@ -25,7 +26,7 @@ class FlowServiceProvider extends ServiceProvider
     }
 
     /**
-     * Register the application services.
+     * Register the service provider.
      *
      * @return void
      */
@@ -38,10 +39,16 @@ class FlowServiceProvider extends ServiceProvider
     {
         $this->app->bind(Flow::class, function ($app) {
             $flow = new Flow();
+
             return $flow;
         });
     }
 
+    /**
+     * Get the services provided by the provider.
+     *
+     * @return array
+     */
     public function provides()
     {
         return [Flow::class];
