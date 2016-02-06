@@ -1,18 +1,18 @@
 # Laravel Flow Package
 
-A Laravel Package to use [Flow](https://www.flow.cl)
+Laravel Package para la integración de pagos con [Flow](https://www.flow.cl)
 
-## Installation
+## Instalación
 
-### Step 1: Install through Composer
+### Paso 1: Instalar a través de Composer
 
 ```
 composer require cokecancino/laravel-flow
 ```
 
-### Step 2: Add the Service Provider
+### Paso 2: Agregar el Service Provider
 
-In the `app/config/app.php` file, add the following to the `providers`  array:
+En el archivo `app/config/app.php`, agregar la siguiente línea al array `providers`:
 ```php
 'providers' => array(
     …
@@ -21,9 +21,9 @@ In the `app/config/app.php` file, add the following to the `providers`  array:
 ),
 ```
 
-### Step 3: Add the alias
+### Paso 3: Agregar el alias
 
-In the `app/config/app.php` file, add the following to the `aliases`  array:
+En el archivo `app/config/app.php`, agregar la siguiente línea al array `aliases`:
 ```php
 'aliases' => array(
     …
@@ -32,14 +32,14 @@ In the `app/config/app.php` file, add the following to the `aliases`  array:
 ),
 ```
 
-### Step 3: Publish the configuration
+### Paso 3: Publicar el archivo de configuración
 
 
 ```sh
 $ php artisan vendor:publish --provider="CokeCancino\LaravelFlow\FlowServiceProvider"
 ```
 
-### Step 4: Configure your .env or edit your brand new `config/flow.php`
+### Paso 4: Configura tu .env o modifica tu `config/flow.php`
 ```
 ...
 FLOW_URL_PAGO=http://flow.tuxpan.com/app/kpf/pago.php
