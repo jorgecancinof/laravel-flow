@@ -38,9 +38,7 @@ class FlowServiceProvider extends ServiceProvider
     private function bindFlowClass()
     {
         $this->app->bind(Flow::class, function ($app) {
-            $flow = new Flow();
-
-            return $flow;
+            return new Flow();
         });
     }
 
