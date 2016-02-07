@@ -400,25 +400,26 @@ class Flow {
     }
 
     /**
-     * Genera una URL de acuerdo al método de Laravel
+     * Genera una URL utilizando las funciones de Laravel
      *
-     * @param  array  $url
+     * @param  mixed  $url
      * @return string
      */
     private function generarUrl($url)
     {
-        if (array_key_exists('url', $url)) {
-            return url($url['url']);
-        }
+        if (is_array($url)) {
+            if (array_key_exists('url', $url))
+                return url($url['url']);
 
-        if (array_key_exists('route', $url)) {
-            return route($url['route']);
-        }
+            if (array_key_exists('route', $url))
+                return route($url['route']);
 
-        if (array_key_exists('action', $url)) {
-            return action($url['action']);
-        }
+            if (array_key_exists('action', $url))
+                return action($url['action']);
 
-        return '';
+            return '';
+        } else {
+            return $url;
+        }
     }
 }
