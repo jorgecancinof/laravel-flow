@@ -8,6 +8,7 @@ return [
     |--------------------------------------------------------------------------
     |
     | Valores posibles:
+    | 'http://www.comercio.cl/kpf/exito.php',
     | ['url' => 'flow/exito'],
     | ['route' => 'flow.exito'],
     | ['action' => 'FlowController@exito'],
@@ -22,6 +23,7 @@ return [
     |--------------------------------------------------------------------------
     |
     | Valores posibles:
+    | 'http://www.comercio.cl/kpf/fracaso.php',
     | ['url' => 'flow/fracaso'],
     | ['route' => 'flow.fracaso'],
     | ['action' => 'FlowController@fracaso'],
@@ -36,6 +38,7 @@ return [
     |--------------------------------------------------------------------------
     |
     | Valores posibles:
+    | 'http://www.comercio.cl/kpf/confirma.php',
     | ['url' => 'flow/confirmacion'],
     | ['route' => 'flow.confirmacion'],
     | ['action' => 'FlowController@confirmacion'],
