@@ -48,7 +48,7 @@ FLOW_COMERCIO=emailFlow@comercio.com
 
 ## Utilización
 
-Este package actúa prácticamente como un simple Service Provider para el [Kit de Integración de Flow](http://flow.cl/apiFlow.php), por lo tanto, me limitaré a ejemplificar solo las diferencias de su utilización dentro de Laravel.
+Este package actúa prácticamente como un simple Service Provider para el [Kit de Integración de Flow](https://www.flow.cl/apiFlow.php), por lo tanto, me limitaré a ejemplificar solo las diferencias de su utilización dentro de Laravel.
 
 **Importante:** [Excluye la protección CSRF](https://laravel.com/docs/master/routing#csrf-excluding-uris) para las páginas de éxito, fracaso y confirmación, ya que provocan excepciones al comunicarse con Flow.
 
@@ -220,9 +220,9 @@ public function fracaso()
 
     // Recupera los datos enviados por Flow
     $orden = [
-        'orden_compra'  => Flow::getOrderNumber(),
-        'monto'         => Flow::getAmount(),
-        'concepto'      => Flow::getConcept(),
+        'orden_compra' => Flow::getOrderNumber(),
+        'monto'        => Flow::getAmount(),
+        'concepto'     => Flow::getConcept(),
     ];
 
     return view('flow.fracaso', $orden);
