@@ -1,6 +1,6 @@
 {
     "name": "cokecancino/laravel-flow",
-    "description": "Laravel Package para la integración de pagos con Flow (https://www.flow.cl)",
+    "description": "Laravel package para la integración de pagos con Flow (https://www.flow.cl)",
     "keywords": ["laravel", "flow", "pagos", "webpay", "transbank", "servipag", "chile"],
     "homepage": "https://github.com/cokecancino/laravel-flow",
     "license": "MIT",
