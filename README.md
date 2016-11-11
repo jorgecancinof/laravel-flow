@@ -50,7 +50,7 @@ FLOW_COMERCIO=emailFlow@comercio.com
 
 Este package actúa prácticamente como un simple Service Provider para el [Kit de Integración de Flow](https://www.flow.cl/apiFlow.php), por lo tanto, me limitaré a ejemplificar solo las diferencias de su utilización dentro de Laravel.
 
-**Importante:** [Excluye la protección CSRF](https://laravel.com/docs/master/routing#csrf-excluding-uris) para las páginas de éxito, fracaso y confirmación, ya que provocan excepciones al comunicarse con Flow.
+**Importante:** [Excluye la protección CSRF](https://laravel.com/docs/master/csrf#csrf-excluding-uris) para las páginas de éxito, fracaso y confirmación, ya que provocan excepciones al comunicarse con Flow.
 
 ### Creando una Nueva Orden
 
@@ -84,7 +84,7 @@ class FlowController extends Controller
 
         // Genera una nueva Orden de Pago, Flow la firma y retorna un paquete de datos firmados
         $orden['flow_pack'] = Flow::new_order($orden['orden_compra'], $orden['monto'], $orden['concepto'], $orden['email_pagador']);
-        
+
         // Si desea enviar el medio de pago usar la siguiente línea
         //$orden['flow_pack'] = Flow::new_order($orden['orden_compra'], $orden['monto'], $orden['concepto'], $orden['email_pagador'], $orden['medio_pago']);
 
