@@ -38,7 +38,7 @@ return [
     |--------------------------------------------------------------------------
     |
     | Valores posibles:
-    | 'http://www.comercio.cl/kpf/confirma.php',
+    | 'http://www.comercio.cl/kpf/confirmacion.php',
     | ['url' => 'flow/confirmacion'],
     | ['route' => 'flow.confirmacion'],
     | ['action' => 'FlowController@confirmacion'],
@@ -46,6 +46,21 @@ return [
     */
 
     'url_confirmacion' => ['route' => 'flow.confirmacion'],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Ingrese aquí la URL de su página de retorno
+    |--------------------------------------------------------------------------
+    |
+    | Valores posibles:
+    | 'http://www.comercio.cl',
+    | ['url' => 'flow/retorno'],
+    | ['route' => 'flow.retorno'],
+    | ['action' => 'FlowController@retorno'],
+    |
+    */
+
+    'url_retorno' => ['url' => '/'],
 
     /*
     |--------------------------------------------------------------------------
@@ -92,6 +107,7 @@ return [
     | Valores posibles:
     | Solo Webpay = 1
     | Solo Servipag = 2
+    | Solo Multicaja = 3
     | Todos los medios de pago = 9
     |
     */
@@ -100,12 +116,12 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Ingrese aquí el modo de acceso a Webpay
+    | Ingrese aquí el modo de acceso
     |--------------------------------------------------------------------------
     |
     | Valores posibles:
     | Mostrar pasarela Flow = f
-    | Ingresar directamente a Webpay = d
+    | Ingresar directamente al medio de pago = d
     |
     */
 
