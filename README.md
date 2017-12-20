@@ -37,7 +37,7 @@ En el mismo archivo, agregar la siguiente línea al array `aliases`:
 ### Paso 4: Publicar el archivo de configuración
 
 ```sh
-$ php artisan vendor:publish --provider="CokeCancino\LaravelFlow\FlowServiceProvider"
+$ php artisan vendor:publish --provider="CokeCancino\LaravelFlow\FlowServiceProvider" --force
 ```
 
 ### Paso 5: Configura tu `.env` o modifica tu `config/flow.php`
@@ -53,6 +53,12 @@ FLOW_COMERCIO=emailFlow@comercio.com
 Este package actúa prácticamente como un simple Service Provider para el [Kit de Integración de Flow](https://www.flow.cl/pagos-web-sistema.php), por lo tanto, me limitaré a ejemplificar solo las diferencias de su utilización dentro de Laravel.
 
 **Importante:** [Excluye la protección CSRF](https://laravel.com/docs/master/csrf#csrf-excluding-uris) para las páginas de éxito, fracaso y confirmación, ya que Flow no sabrá qué token CSRF enviar a tus rutas.
+
+---
+
+### [Proyecto de demostración](https://github.com/cokecancino/laravel-flow-demo)
+
+Antes de ver los ejemplos que vienen a continuación, quizás prefieras echarle un vistazo al [proyecto de demostración](https://github.com/cokecancino/laravel-flow-demo) del package implementado en Laravel 5.5, o bien analizarlo en conjunto para una mayor comprensión de cómo utilizarlo.
 
 ---
 
