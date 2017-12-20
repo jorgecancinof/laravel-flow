@@ -3,7 +3,7 @@
 /*
  * Flow API
  *
- * Version: 1.2
+ * Version: 1.4
  * Date:    2015-05-25
  * Author:  flow.cl
  */
@@ -301,6 +301,7 @@ class Flow {
             $this->flow_log("firma invalida", "read_result");
             throw new Exception('Invalid signature from Flow');
         }
+        //$this->order["Comision"] = $flow_tasa_default;
         $this->order["Status"] = "";
         $this->order["Error"] = "";
         $this->order['OrdenNumero'] = $params['kpf_orden'];
@@ -373,7 +374,7 @@ class Flow {
     }
 
     private function flow_pack() {
-        //global $flow_comercio, $flow_url_exito, $flow_url_fracaso, $flow_url_confirmacion, $flow_tipo_integracion;
+        //global $flow_comercio, $flow_url_exito, $flow_url_fracaso, $flow_url_confirmacion, $flow_tipo_integracion, $flow_url_retorno;
         $tipo_integracion = urlencode(config('flow.tipo_integracion'));
         $comercio = urlencode(config('flow.comercio'));
         $orden_compra = urlencode($this->order["OrdenNumero"]);
@@ -391,8 +392,9 @@ class Flow {
         $url_exito = urlencode($this->generarUrl(config('flow.url_exito')));
         $url_fracaso = urlencode($this->generarUrl(config('flow.url_fracaso')));
         $url_confirmacion = urlencode($this->generarUrl(config('flow.url_confirmacion')));
+        $url_retorno = urlencode($this->generarUrl(config('flow.url_retorno')));
 
-        $p = "c=$comercio&oc=$orden_compra&mp=$medioPago&m=$monto&o=$concepto&ue=$url_exito&uf=$url_fracaso&uc=$url_confirmacion&ti=$tipo_integracion&e=$email&v=kit_1_2";
+        $p = "c=$comercio&oc=$orden_compra&mp=$medioPago&m=$monto&o=$concepto&ue=$url_exito&uf=$url_fracaso&uc=$url_confirmacion&ti=$tipo_integracion&e=$email&v=kit_1_4&ur=$url_retorno";
 
         $signature = $this->flow_sign($p);
         $this->flow_log("Orden N°: ".$this->order["OrdenNumero"]. " -empaquetado correcto","flow_pack");
