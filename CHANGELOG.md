@@ -5,6 +5,8 @@ El formato se basa en [Mantenga un Changelog](http://keepachangelog.com/es-ES/1.
 y este proyecto se adhiere al [Versionado Semántico](https://semver.org/lang/es/).
 
 ## [Unreleased]
+
+## [1.2.2] - 2017-12-21
 ### Añadido
 - Se añade un registro de cambios al proyecto (CHANGELOG).
 
@@ -107,7 +109,8 @@ define desde el sitio web de Flow.
 ### Añadido
 - Se implementa la API de Flow v1.2
 
-[Unreleased]: https://github.com/cokecancino/laravel-flow/compare/1.2.1...HEAD
+[Unreleased]: https://github.com/cokecancino/laravel-flow/compare/1.2.2...HEAD
+[1.2.2]: https://github.com/cokecancino/laravel-flow/compare/1.2.1...1.2.2
 [1.2.1]: https://github.com/cokecancino/laravel-flow/compare/1.2...1.2.1
 [1.2]: https://github.com/cokecancino/laravel-flow/compare/1.1.3...1.2
 [1.1.3]: https://github.com/cokecancino/laravel-flow/compare/1.1.2...1.1.3
