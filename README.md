@@ -66,7 +66,7 @@ Antes de ver los ejemplos que vienen a continuación, quizás prefieras echarle 
 
 View: `resources/views/index.blade.php`
 
-```php
+```html
 @extends('layouts._master')
 
 @section('content')
@@ -130,7 +130,7 @@ class FlowController extends Controller
 
 View: `resources/views/orden.blade.php`
 
-```php
+```html
 @extends('layouts._master')
 
 @section('content')
@@ -187,7 +187,7 @@ Controller: `Http/Controllers/FlowController.php`
 
 View: `resources/views/flow/exito.blade.php`
 
-```php
+```html
 @extends('layouts._master')
 
 @section('content')
@@ -241,7 +241,7 @@ Controller: `Http/Controllers/FlowController.php`
 
 View: `resources/views/flow/fracaso.blade.php`
 
-```php
+```html
 @extends('layouts._master')
 
 @section('content')
