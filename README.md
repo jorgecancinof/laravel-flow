@@ -50,15 +50,15 @@ FLOW_COMERCIO=emailFlow@comercio.com
 
 ## Utilización
 
-Este package actúa prácticamente como un simple Service Provider para el [Kit de Integración de Flow](https://www.flow.cl/pagos-web-sistema.php), por lo tanto, me limitaré a ejemplificar solo las diferencias de su utilización dentro de Laravel.
+Este package actúa prácticamente como un simple Service Provider para el [Kit de Integración de Flow](https://www.flow.cl/docs/api.html), por lo tanto, me limitaré a ejemplificar solo las diferencias de su utilización dentro de Laravel.
 
 **Importante:** [Excluye la protección CSRF](https://laravel.com/docs/master/csrf#csrf-excluding-uris) para las páginas de éxito, fracaso y confirmación, ya que Flow no sabrá qué token CSRF enviar a tus rutas.
 
 ---
 
-### [Proyecto de demostración](https://github.com/cokecancino/laravel-flow-demo)
+### [Proyecto de demostración](https://github.com/jorgecancinof/laravel-flow-demo)
 
-Antes de ver los ejemplos que vienen a continuación, quizás prefieras echarle un vistazo al [proyecto de demostración](https://github.com/cokecancino/laravel-flow-demo) del package implementado en Laravel 5.5, o bien analizarlo en conjunto para una mayor comprensión de cómo utilizarlo.
+Antes de ver los ejemplos que vienen a continuación, quizás prefieras echarle un vistazo al [proyecto de demostración](https://github.com/jorgecancinof/laravel-flow-demo) del package implementado en Laravel 5.5, o bien analizarlo en conjunto para una mayor comprensión de cómo utilizarlo.
 
 ---
 
@@ -66,7 +66,7 @@ Antes de ver los ejemplos que vienen a continuación, quizás prefieras echarle 
 
 View: `resources/views/index.blade.php`
 
-```html
+```blade
 @extends('layouts._master')
 
 @section('content')
@@ -130,7 +130,7 @@ class FlowController extends Controller
 
 View: `resources/views/orden.blade.php`
 
-```html
+```blade
 @extends('layouts._master')
 
 @section('content')
@@ -187,7 +187,7 @@ Controller: `Http/Controllers/FlowController.php`
 
 View: `resources/views/flow/exito.blade.php`
 
-```html
+```blade
 @extends('layouts._master')
 
 @section('content')
@@ -241,7 +241,7 @@ Controller: `Http/Controllers/FlowController.php`
 
 View: `resources/views/flow/fracaso.blade.php`
 
-```html
+```blade
 @extends('layouts._master')
 
 @section('content')
