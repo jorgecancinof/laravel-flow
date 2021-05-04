@@ -1,8 +1,14 @@
 # Laravel Flow
 
-Laravel package para la integración de pagos con [Flow](https://www.flow.cl)
+<p>
+<a href="https://packagist.org/packages/cokecancino/laravel-flow"><img src="https://img.shields.io/packagist/dt/cokecancino/laravel-flow" alt="Total Downloads"></a>
+<a href="https://packagist.org/packages/cokecancino/laravel-flow"><img src="https://img.shields.io/packagist/v/cokecancino/laravel-flow" alt="Latest Stable Version"></a>
+<a href="https://packagist.org/packages/cokecancino/laravel-flow"><img src="https://img.shields.io/packagist/l/cokecancino/laravel-flow" alt="License"></a>
+</p>
 
-Testeado con Laravel 5.1 y 5.5
+Paquete para Laravel que implementa la integración de pagos con [Flow](https://www.flow.cl).
+
+> Probado con Laravel 5.1 y 5.5
 
 ## Instalación
 
@@ -50,7 +56,7 @@ FLOW_COMERCIO=emailFlow@comercio.com
 
 ## Utilización
 
-Este package actúa prácticamente como un simple Service Provider para el [Kit de Integración de Flow](https://www.flow.cl/docs/api.html), por lo tanto, me limitaré a ejemplificar solo las diferencias de su utilización dentro de Laravel.
+Este paquete actúa como un Service Provider para el [Kit de Integración de Flow](https://www.flow.cl/docs/api.html), por lo tanto, me limitaré a ejemplificar solo las diferencias de su utilización dentro de Laravel.
 
 **Importante:** [Excluye la protección CSRF](https://laravel.com/docs/master/csrf#csrf-excluding-uris) para las páginas de éxito, fracaso y confirmación, ya que Flow no sabrá qué token CSRF enviar a tus rutas.
 
@@ -58,11 +64,11 @@ Este package actúa prácticamente como un simple Service Provider para el [Kit 
 
 ### [Proyecto de demostración](https://github.com/jorgecancinof/laravel-flow-demo)
 
-Antes de ver los ejemplos que vienen a continuación, quizás prefieras echarle un vistazo al [proyecto de demostración](https://github.com/jorgecancinof/laravel-flow-demo) del package implementado en Laravel 5.5, o bien analizarlo en conjunto para una mayor comprensión de cómo utilizarlo.
+Antes de ver los ejemplos que vienen a continuación, quizás prefieras echarle un vistazo al [proyecto de demostración](https://github.com/jorgecancinof/laravel-flow-demo) del paquete implementado en Laravel 5.5, o bien analizarlo en conjunto para una mayor comprensión de cómo utilizarlo.
 
 ---
 
-### Formulario de Compra
+### Formulario de compra
 
 View: `resources/views/index.blade.php`
 
@@ -72,9 +78,9 @@ View: `resources/views/index.blade.php`
 @section('content')
     <form method="POST" action="{{ route('orden') }}">
         <input type="hidden" name="_token" value="{{ csrf_token() }}">
-        Orden N°: <input type="text" name="orden" id="orden" placeholder="1000" required><br>
+        Orden n°: <input type="text" name="orden" id="orden" placeholder="1000" required><br>
         Monto: <input type="text" name="monto" id="monto" placeholder="20000" required><br>
-        Descripción: <input type="text" name="concepto" id="concepto" placeholder="Pago de Orden N° 1000" required><br>
+        Descripción: <input type="text" name="concepto" id="concepto" placeholder="Pago de orden n° 1000" required><br>
         Email pagador (opcional): <input type="email" name="pagador" id="pagador" placeholder="usuario@email.com"><br>
         <br>
         <button type="submit">Aceptar</button>
@@ -84,7 +90,7 @@ View: `resources/views/index.blade.php`
 
 ---
 
-### Creando una nueva Orden
+### Creando una nueva orden
 
 Controller: `Http/Controllers/FlowController.php`
 
@@ -100,7 +106,7 @@ use Illuminate\Http\Request;
 class FlowController extends Controller
 {
     /**
-     * Creando una nueva Orden
+     * Creando una nueva orden
      *
      * @param Request $request
      * @return \Illuminate\View\View
@@ -117,7 +123,7 @@ class FlowController extends Controller
             //'medio_pago'    => $request->input('medio_pago'),
         ];
 
-        // Genera una nueva Orden de Pago, Flow la firma y retorna un paquete de datos firmados
+        // Genera una nueva orden de pago, Flow la firma y retorna un paquete de datos firmados
         $orden['flow_pack'] = Flow::new_order($orden['orden_compra'], $orden['monto'], $orden['concepto'], $orden['email_pagador']);
 
         // Si desea enviar el medio de pago usar la siguiente línea
@@ -134,10 +140,10 @@ View: `resources/views/orden.blade.php`
 @extends('layouts._master')
 
 @section('content')
-    <!-- Formulario HTML que envía la nueva Orden -->
-    Confirme su orden antes de proceder al pago via Flow<br>
+    <!-- Formulario HTML que envía la nueva orden -->
+    Confirme su orden antes de proceder al pago vía Flow<br>
     <br>
-    Orden N°: {{ $orden_compra }}<br>
+    Orden n°: {{ $orden_compra }}<br>
     Monto: {{ $monto }}<br>
     Descripción: {{ $concepto }}<br>
     Email pagador (opcional): {{ $email_pagador }}<br>
@@ -152,14 +158,14 @@ View: `resources/views/orden.blade.php`
 
 ---
 
-### Página de Éxito
+### Página de éxito
 
 Controller: `Http/Controllers/FlowController.php`
 
 ```php
 …
     /**
-     * Página de éxito del Comercio
+     * Página de éxito del comercio
      *
      * Esta página será invocada por Flow cuando la transacción resulte exitosa
      * y el usuario presione el botón para retornar al comercio desde Flow.
@@ -191,14 +197,14 @@ View: `resources/views/flow/exito.blade.php`
 @extends('layouts._master')
 
 @section('content')
-    <h1>Página de éxito de Comercio</h1>
-    Su pago se ha realizado exitosamente<br>
+    <h1>Página de éxito de comercio</h1>
+    Su pago se ha realizado con éxito<br>
     <br>
-    Orden de Compra: {{ $orden_compra }}<br>
+    Orden de compra: {{ $orden_compra }}<br>
     Monto: {{ $monto }}<br>
     Descripción: {{ $concepto }}<br>
     Pagador: {{ $email_pagador }}<br>
-    Flow Orden N°: {{ $flow_orden }}<br>
+    Flow orden n°: {{ $flow_orden }}<br>
     <br>
     Gracias por su compra
 @endsection
@@ -206,14 +212,14 @@ View: `resources/views/flow/exito.blade.php`
 
 ---
 
-### Página de Fracaso
+### Página de fracaso
 
 Controller: `Http/Controllers/FlowController.php`
 
 ```php
 …
     /**
-     * Página de fracaso del Comercio
+     * Página de fracaso del comercio
      *
      * Esta página será invocada por Flow cuando la transacción no se logre pagar
      * y el usuario presione el botón para retornar al comercio desde Flow.
@@ -245,14 +251,14 @@ View: `resources/views/flow/fracaso.blade.php`
 @extends('layouts._master')
 
 @section('content')
-    <h1>Página de fracaso de Comercio</h1>
+    <h1>Página de fracaso de comercio</h1>
     Su pago ha sido rechazado<br>
     <br>
-    Orden de Compra: {{ $orden_compra }}<br>
+    Orden de compra: {{ $orden_compra }}<br>
     Monto: {{ $monto }}<br>
     Descripción: {{ $concepto }}<br>
     Pagador: {{ $email_pagador }}<br>
-    Flow Orden N°: {{ $flow_orden }}<br>
+    Flow orden n°: {{ $flow_orden }}<br>
     <br>
     <a href="{{ url('/') }}">Intente nuevamente</a>
 @endsection
@@ -260,14 +266,14 @@ View: `resources/views/flow/fracaso.blade.php`
 
 ---
 
-### Página de Confirmación
+### Página de confirmación
 
 Controller: `Http/Controllers/FlowController.php`
 
 ```php
 …
     /**
-     * Página de confirmación del Comercio
+     * Página de confirmación del comercio
      *
      * @return void
      */
@@ -282,18 +288,18 @@ Controller: `Http/Controllers/FlowController.php`
             return;
         }
 
-        // Recupera los valores de la Orden
+        // Recupera los valores de la orden
         $flow_status  = Flow::getStatus();      // El resultado de la transacción (EXITO o FRACASO)
-        $orden_numero = Flow::getOrderNumber(); // N° de Orden del Comercio
+        $orden_numero = Flow::getOrderNumber(); // N° de orden del comercio
         $monto        = Flow::getAmount();      // Monto de la transacción
-        $orden_flow   = Flow::getFlowNumber();  // Si $flow_status = 'EXITO' el N° de Orden de Flow
+        $orden_flow   = Flow::getFlowNumber();  // Si $flow_status = 'EXITO' el n° de orden de Flow
         $pagador      = Flow::getPayer();       // El email del pagador
 
         /**
-         * Aquí puede validar la Orden
+         * Aquí puede validar la orden
          *
-         * Si acepta la Orden responder Flow::build_response(true)
-         * Si rechaza la Orden responder Flow::build_response(false)
+         * Si acepta la orden responder Flow::build_response(true)
+         * Si rechaza la orden responder Flow::build_response(false)
          */
         if ($flow_status == 'EXITO') {
             // La transacción fue aceptada por Flow
@@ -324,3 +330,7 @@ Route::post('flow/fracaso', 'FlowController@fracaso')->name('flow.fracaso');
 Route::post('flow/confirmacion', 'FlowController@confirmacion')->name('flow.confirmacion');
 …
 ```
+
+## Licencia
+
+Este paquete cuenta con licencia conforme a los términos de la [Licencia MIT](LICENSE).
