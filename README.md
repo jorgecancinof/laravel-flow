@@ -9,11 +9,11 @@
 Laravel package para integrar pagos con [Flow](https://www.flow.cl/).
 
 > [!WARNING]
-> **Package deprecated**
+> **Este package está deprecado y ya no recibe mantenimiento**
 >
-> Este package fue creado para implementar el, ahora antiguo, Kit de Integración de Flow en Laravel, ya que en ese
+> En sus inicios, fue creado para implementar el, ahora antiguo, Kit de Integración de Flow en Laravel, ya que en ese
 > entonces no existía otra forma de integración. Actualmente, Flow proporciona
-> una [API REST](https://www.flow.cl/docs/api.html) actualizada, lo que hace que este package sea innecesario y
+> una [API REST](https://www.flow.cl/docs/api.html) actualizada, por lo que este package se ha vuelto innecesario y
 > potencialmente incompatible con las nuevas versiones de la API de Flow. Por esta razón, se recomienda encarecidamente
 > utilizar la nueva API REST de Flow para futuras integraciones.
 >
@@ -31,49 +31,48 @@ Es probable que también sea compatible con otras versiones, pero no ha sido esp
 
 ## Instalación
 
-### 1. Instalar a través de Composer
+1. **Instalar a través de Composer**
 
-```sh
-composer require cokecancino/laravel-flow
-```
+   ```sh
+   composer require cokecancino/laravel-flow
+   ```
 
-### 2. Agregar el Service Provider
+2. **Agregar el Service Provider**
 
-En el archivo `config/app.php`, agregar la siguiente línea al array `providers`:
+   En el archivo `config/app.php`, agregar la siguiente línea al array `providers`:
 
-```php
-'providers' => [
-    …
-    CokeCancino\LaravelFlow\FlowServiceProvider::class,
-    …
-],
-```
+   ```php
+   'providers' => [
+       // ...
+       CokeCancino\LaravelFlow\FlowServiceProvider::class,
+       // ...
+   ],
+   ```
 
-### 3. Agregar el alias
+3. **Agregar el alias**
 
-En el mismo archivo, agregar la siguiente línea al array `aliases`:
+   En el mismo archivo, agregar la siguiente línea al array `aliases`:
 
-```php
-'aliases' => [
-    …
-    'Flow' => CokeCancino\LaravelFlow\Facades\Flow::class,
-    …
-],
-```
+   ```php
+   'aliases' => [
+       // ...
+       'Flow' => CokeCancino\LaravelFlow\Facades\Flow::class,
+       // ...
+   ],
+   ```
 
-### 4. Publicar el archivo de configuración
+4. **Publicar el archivo de configuración**
 
-```sh
-php artisan vendor:publish --provider="CokeCancino\LaravelFlow\FlowServiceProvider" --force
-```
+   ```sh
+   php artisan vendor:publish --provider="CokeCancino\LaravelFlow\FlowServiceProvider" --force
+   ```
 
-### 5. Configura tu `.env` o modifica tu `config/flow.php`
+5. **Configura tu `.env` o modifica tu `config/flow.php`**
 
-```env
-…
-FLOW_URL_PAGO=http://flow.tuxpan.com/app/kpf/pago.php
-FLOW_COMERCIO=emailFlow@comercio.com
-```
+   ```env
+   FLOW_URL_PAGO=http://flow.tuxpan.com/app/kpf/pago.php
+   FLOW_COMERCIO=emailFlow@comercio.com
+   ```
 
 ## Guía de Uso
 
@@ -144,7 +143,7 @@ class FlowController extends Controller
 
         return view('orden', $orden);
     }
-…
+// ...
 ```
 
 View: `resources/views/orden.blade.php`
@@ -174,7 +173,7 @@ View: `resources/views/orden.blade.php`
 Controller: `Http/Controllers/FlowController.php`
 
 ```php
-…
+// ...
     /**
      * Página de éxito del comercio
      *
@@ -199,7 +198,7 @@ Controller: `Http/Controllers/FlowController.php`
 
         return view('flow.exito', $orden);
     }
-…
+// ...
 ```
 
 View: `resources/views/flow/exito.blade.php`
@@ -226,7 +225,7 @@ View: `resources/views/flow/exito.blade.php`
 Controller: `Http/Controllers/FlowController.php`
 
 ```php
-…
+// ...
     /**
      * Página de fracaso del comercio
      *
@@ -251,7 +250,7 @@ Controller: `Http/Controllers/FlowController.php`
 
         return view('flow.fracaso', $orden);
     }
-…
+// ...
 ```
 
 View: `resources/views/flow/fracaso.blade.php`
@@ -278,7 +277,7 @@ View: `resources/views/flow/fracaso.blade.php`
 Controller: `Http/Controllers/FlowController.php`
 
 ```php
-…
+// ...
     /**
      * Página de confirmación del comercio
      *
@@ -318,13 +317,13 @@ Controller: `Http/Controllers/FlowController.php`
             echo Flow::build_response(false); // Comercio rechaza la transacción
         }
     }
-…
+// ...
 ```
 
 ### Routes
 
 ```php
-…
+// ...
 Route::get('/', function () {
     return view('index');
 });
@@ -333,7 +332,7 @@ Route::post('orden', 'FlowController@orden')->name('orden');
 Route::post('flow/exito', 'FlowController@exito')->name('flow.exito');
 Route::post('flow/fracaso', 'FlowController@fracaso')->name('flow.fracaso');
 Route::post('flow/confirmacion', 'FlowController@confirmacion')->name('flow.confirmacion');
-…
+// ...
 ```
 
 ## Licencia
