@@ -6,21 +6,41 @@
 <a href="https://packagist.org/packages/cokecancino/laravel-flow"><img src="https://img.shields.io/packagist/l/cokecancino/laravel-flow" alt="License"></a>
 </p>
 
-Paquete para Laravel que implementa la integración de pagos con [Flow](https://www.flow.cl).
+Laravel package para integrar pagos con [Flow](https://www.flow.cl/).
 
-> Probado con Laravel 5.1 y 5.5
+> [!WARNING]
+> **Package deprecated**
+>
+> Este package fue creado para implementar el, ahora antiguo, Kit de Integración de Flow en Laravel, ya que en ese
+> entonces no existía otra forma de integración. Actualmente, Flow proporciona
+> una [API REST](https://www.flow.cl/docs/api.html) actualizada, lo que hace que este package sea innecesario y
+> potencialmente incompatible con las nuevas versiones de la API de Flow. Por esta razón, se recomienda encarecidamente
+> utilizar la nueva API REST de Flow para futuras integraciones.
+>
+> Agradezco a todos los que confiaron en este package para sus proyectos y comercios. Espero que la nueva API REST de
+> Flow proporcione una mejor experiencia y mayor flexibilidad en la integración de pagos.
+
+## Compatibilidad
+
+Este package ha sido probado con las siguientes versiones de Laravel:
+
+- Laravel 5.1
+- Laravel 5.5
+
+Es probable que también sea compatible con otras versiones, pero no ha sido específicamente probado en ellas.
 
 ## Instalación
 
-### Paso 1: Instalar a través de Composer
+### 1. Instalar a través de Composer
 
 ```sh
-$ composer require cokecancino/laravel-flow
+composer require cokecancino/laravel-flow
 ```
 
-### Paso 2: Agregar el Service Provider
+### 2. Agregar el Service Provider
 
 En el archivo `config/app.php`, agregar la siguiente línea al array `providers`:
+
 ```php
 'providers' => [
     …
@@ -29,9 +49,10 @@ En el archivo `config/app.php`, agregar la siguiente línea al array `providers`
 ],
 ```
 
-### Paso 3: Agregar el alias
+### 3. Agregar el alias
 
 En el mismo archivo, agregar la siguiente línea al array `aliases`:
+
 ```php
 'aliases' => [
     …
@@ -40,33 +61,27 @@ En el mismo archivo, agregar la siguiente línea al array `aliases`:
 ],
 ```
 
-### Paso 4: Publicar el archivo de configuración
+### 4. Publicar el archivo de configuración
 
 ```sh
-$ php artisan vendor:publish --provider="CokeCancino\LaravelFlow\FlowServiceProvider" --force
+php artisan vendor:publish --provider="CokeCancino\LaravelFlow\FlowServiceProvider" --force
 ```
 
-### Paso 5: Configura tu `.env` o modifica tu `config/flow.php`
+### 5. Configura tu `.env` o modifica tu `config/flow.php`
 
-```
+```env
 …
 FLOW_URL_PAGO=http://flow.tuxpan.com/app/kpf/pago.php
 FLOW_COMERCIO=emailFlow@comercio.com
 ```
 
-## Utilización
+## Guía de Uso
 
-Este paquete actúa como un Service Provider para el [Kit de Integración de Flow](https://www.flow.cl/docs/api.html), por lo tanto, me limitaré a ejemplificar solo las diferencias de su utilización dentro de Laravel.
+A continuación, se muestran ejemplos de su uso en Laravel.
 
-**Importante:** [Excluye la protección CSRF](https://laravel.com/docs/master/csrf#csrf-excluding-uris) para las páginas de éxito, fracaso y confirmación, ya que Flow no sabrá qué token CSRF enviar a tus rutas.
-
----
-
-### [Proyecto de demostración](https://github.com/jorgecancinof/laravel-flow-demo)
-
-Antes de ver los ejemplos que vienen a continuación, quizás prefieras echarle un vistazo al [proyecto de demostración](https://github.com/jorgecancinof/laravel-flow-demo) del paquete implementado en Laravel 5.5, o bien analizarlo en conjunto para una mayor comprensión de cómo utilizarlo.
-
----
+> [!IMPORTANT]
+> [Excluye la protección CSRF](https://laravel.com/docs/master/csrf#csrf-excluding-uris) para las páginas de éxito,
+> fracaso, y confirmación, ya que Flow no sabrá qué token CSRF enviar a tus rutas.
 
 ### Formulario de compra
 
@@ -87,8 +102,6 @@ View: `resources/views/index.blade.php`
     </form>
 @endsection
 ```
-
----
 
 ### Creando una nueva orden
 
@@ -156,8 +169,6 @@ View: `resources/views/orden.blade.php`
 @endsection
 ```
 
----
-
 ### Página de éxito
 
 Controller: `Http/Controllers/FlowController.php`
@@ -209,8 +220,6 @@ View: `resources/views/flow/exito.blade.php`
     Gracias por su compra
 @endsection
 ```
-
----
 
 ### Página de fracaso
 
@@ -264,8 +273,6 @@ View: `resources/views/flow/fracaso.blade.php`
 @endsection
 ```
 
----
-
 ### Página de confirmación
 
 Controller: `Http/Controllers/FlowController.php`
@@ -314,8 +321,6 @@ Controller: `Http/Controllers/FlowController.php`
 …
 ```
 
----
-
 ### Routes
 
 ```php
@@ -333,4 +338,4 @@ Route::post('flow/confirmacion', 'FlowController@confirmacion')->name('flow.conf
 
 ## Licencia
 
-Este paquete cuenta con licencia conforme a los términos de la [Licencia MIT](LICENSE).
+Este package está licenciado bajo los términos de la [Licencia MIT](LICENSE).
